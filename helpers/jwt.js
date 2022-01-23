@@ -1,3 +1,7 @@
+'use strict';
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
+
 const createToken = ({ _id, name, username }) => {
   return jwt.sign(
     {

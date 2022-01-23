@@ -6,12 +6,13 @@ const bcrypt = require("bcryptjs");
 const { createToken } = require("../helpers/jwt");
 
 async function signup(req, res) {
-  let { name, username, password } = req.body;
-  let user = await User.findOne({ username });
+  let { email, name, username, password } = req.body;
+  console.log(req.body);
+  let user = await User.findOne({ email });
 
   if (user) {
     return res.status(400).json({
-      message: "Username already exists",
+      message: "Email already registered",
     });
   }
 
@@ -19,7 +20,7 @@ async function signup(req, res) {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  user = new User({ name, username, password: hashedPassword });
+  user = new User({ email, name, username, password: hashedPassword });
   user.save((err) => {
     if (err)
       return res.status(500).json({
@@ -34,12 +35,17 @@ async function signup(req, res) {
 }
 
 async function signin(req, res) {
-  let { username, password } = req.body;
+  let { unOrEmail, password } = req.body;
 
-  let user = await User.findOne({ username });
+  console.log(req.body);
+
+  let user = await User.findOne({
+    $or: [{ username: unOrEmail }, { email: unOrEmail }],
+  });
+
   if (!user) {
     return res.status(400).json({
-      message: "Username does not exist",
+      message: "Username or email does not exist",
     });
   }
 

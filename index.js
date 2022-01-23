@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGOURI, (err) => {
 /* Routes */
 const userRouter = require("./routes/user");
 
-app.use("/api/user", userRouter);
+app.use("/api/users", userRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
