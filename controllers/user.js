@@ -52,7 +52,7 @@ async function signin(req, res) {
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
     return res.status(400).json({
-      message: "Password is incorrect",
+      message: "Incorrect password",
     });
   }
 
@@ -73,9 +73,16 @@ async function signin(req, res) {
     message: "User signed in successfully",
     data: {
       token,
-      user,
     },
   });
 }
 
-module.exports = { signup, signin };
+function getMyProfile(req, res) {
+  console.log(req.user);
+  return res.status(200).json({
+    message: "User profile",
+    data: req.user,
+  });
+}
+
+module.exports = { signup, signin, getMyProfile };
