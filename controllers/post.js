@@ -1,5 +1,7 @@
-'use strict'
+"use strict";
 
-function createPost(req, res){
-    let {text, image, userId} = req.body; }
+function createPost(req, res) {
+  let { text, image, userId } = req.body;
 }
+
+function deletePost(req, res) {}
