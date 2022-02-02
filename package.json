@@ -24,9 +24,19 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
+<<<<<<< HEAD
     "mongoose": "^6.1.5"
+=======
+    "mongoose": "^6.1.5",
+    "multer": "^1.4.4",
+    "sharp": "^0.26.0"
+>>>>>>> 8c7b042cc4cf016d4afcc812d34f214def4d4860
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8c7b042cc4cf016d4afcc812d34f214def4d4860

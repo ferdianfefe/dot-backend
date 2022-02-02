@@ -77,11 +77,19 @@ async function signin(req, res) {
   });
 }
 
+<<<<<<< HEAD
 function getMyProfile(req, res) {
   console.log(req.user);
   return res.status(200).json({
     message: "User profile",
     data: req.user,
+=======
+async function getMyProfile(req, res) {
+  let user = await User.findById(req.user._id);
+  return res.status(200).json({
+    message: "User profile",
+    data: user,
+>>>>>>> 8c7b042cc4cf016d4afcc812d34f214def4d4860
   });
 }
 

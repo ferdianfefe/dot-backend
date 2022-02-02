@@ -13,7 +13,11 @@ const verifyToken = async (req, res, next) => {
 
   /* Check if token is valid */
   try {
+<<<<<<< HEAD
     const decoded = await jwt.verify(token, process.env.SECRET);
+=======
+    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+>>>>>>> 8c7b042cc4cf016d4afcc812d34f214def4d4860
     req.user = decoded;
     next();
   } catch (err) {
