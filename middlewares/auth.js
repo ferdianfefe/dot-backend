@@ -13,7 +13,7 @@ const verifyToken = async (req, res, next) => {
 
   /* Check if token is valid */
   try {
-    const decoded = await jwt.verify(token, process.env.SECRET);
+    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
     next();
   } catch (err) {

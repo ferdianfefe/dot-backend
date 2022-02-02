@@ -30,6 +30,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       select: false,
     },
+    posts: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
   },
   {
     toJSON: { virtuals: true },

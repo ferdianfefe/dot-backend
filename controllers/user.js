@@ -77,11 +77,11 @@ async function signin(req, res) {
   });
 }
 
-function getMyProfile(req, res) {
-  console.log(req.user);
+async function getMyProfile(req, res) {
+  let user = await User.findById(req.user._id);
   return res.status(200).json({
     message: "User profile",
-    data: req.user,
+    data: user,
   });
 }
 
