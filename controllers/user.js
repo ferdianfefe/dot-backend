@@ -135,4 +135,4 @@ function coment(req,res) {
   });
 }
 
-module.exports = { signup, signin, getMyProfile, like };
+module.exports = { signup, signin, getMyProfile, like, coment };
