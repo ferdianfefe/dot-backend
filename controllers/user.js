@@ -115,4 +115,24 @@ function like(req,res) {
   });
 }
 
+function coment(req,res) {
+  User.findOne({_id: req.body.userId}, (err, target) => {
+      if (err) throw err;
+      target.posts.findOne({_id: req.body.postId}, (err, post) => {
+          if (err) throw err;
+          post.comments.push({
+              creator: req.user._id,
+              content: req.body.comment,
+          });
+          post.save((err) => {
+              if (err) throw err;
+              res.status(201).json({
+                  success: true,
+                  message: "Successfully comment post",
+              });
+          });
+      });
+  });
+}
+
 module.exports = { signup, signin, getMyProfile, like };
