@@ -2,7 +2,8 @@
 const jwt = require("jsonwebtoken");
 
 const verifyToken = async (req, res, next) => {
-  const token = req.headers["x-access-token"] || req.headers["authorization"];
+  const bearer = req.headers["x-access-token"] || req.headers["authorization"];
+  const token = bearer.split(" ")[1];
 
   /* If token does not exist */
   if (!token) {

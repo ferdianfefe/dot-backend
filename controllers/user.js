@@ -85,34 +85,6 @@ async function getMyProfile(req, res) {
   });
 }
 
-function like(req,res) {
-  User.findOne({_id: req.body.userId}, (err, target) => {
-      if (err) throw err;
-      target.posts.findOne({_id: req.body.postId}, (err, post) => {
-          if (err) throw err;
-          if (post.likes.indexOf(req.user._id) < 0) {
-              // belum like
-              post.likes.push(req.user._id);
-              post.save((err) => {
-                  if (err) throw err;
-                  res.status(201).json({
-                      success: true,
-                      message: "Successfully like post",
-                  });
-              });
-          } else {
-              // sudah like
-              post.likes.splice(post.likes.indexOf(req.user._id), 1);
-              post.save((err) => {
-                  if (err) throw err;
-                  res.status(200).json({
-                      success: true,
-                      message: "Successfully unlike post",
-                  });
-              });                
-          }
-      });
-  });
-}
 
-module.exports = { signup, signin, getMyProfile, like };
+
+module.exports = { signup, signin, getMyProfile };

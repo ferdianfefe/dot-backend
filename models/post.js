@@ -23,10 +23,6 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    decodedImage: {
-      type: String,
-      select: false,
-    },
     likes: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -34,9 +30,9 @@ const PostSchema = new mongoose.Schema(
       },
     ],
     createdAt: {
-        type: Date,
-        default: Date.now,
-    }
+      type: Date,
+      default: Date.now,
+    },
   },
   {
     toJSON: { virtuals: true },
@@ -44,7 +40,7 @@ const PostSchema = new mongoose.Schema(
   }
 );
 
-UserSchema.virtual("decodedPostImage").get(function () {
+PostSchema.virtual("decodedImage").get(function () {
   if (this.postImage) {
     return `data:${
       this.profileImageType
@@ -54,4 +50,4 @@ UserSchema.virtual("decodedPostImage").get(function () {
   return null;
 });
 
-module.exports = mongoose.model("Post", UserSchema);
+module.exports = mongoose.model("Post", PostSchema);
