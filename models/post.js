@@ -47,10 +47,10 @@ const PostSchema = new mongoose.Schema(
 );
 
 PostSchema.virtual("decodedImage").get(function () {
-  if (this.postImage) {
-    return `data:${
-      this.profileImageType
-    };charset=utf-8;base64,${this.postImage.toString("base64")}`;
+  if (this.image) {
+    return `data:${this.imageType};charset=utf-8;base64,${this.image.toString(
+      "base64"
+    )}`;
   }
 
   return null;
